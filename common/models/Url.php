@@ -8,7 +8,7 @@ class Url extends ActiveRecord
 {
    public function rules() {
         return [
-            [['url', 'title'], 'safe'],
+            [['url', 'title','status_id'], 'safe'],
             [['url'], 'string', 'max' => 255],
         ];
     }

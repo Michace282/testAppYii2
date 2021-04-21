@@ -18,5 +18,11 @@ return [
             'ruleTable'       => 'auth_rule',
             'defaultRoles'    => ['manager'],// роль которая назначается всем пользователям по умолчанию
         ],
+		
+		'queue' => [
+            'class' => \yii\queue\file\Queue::class,
+            'path' => '@console/runtime/queue',
+            'as log' => \yii\queue\LogBehavior::class,
+        ],
     ],
 ];

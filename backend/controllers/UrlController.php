@@ -35,8 +35,16 @@ class UrlController extends Controller
 	
 	public function actionGettitle($id)
     {
-		$urls = Url::findOne($id);
-	    if ($urls->getTitle()) {
+		$url = Url::findOne($id);
+		
+		//Отправка задания в очередь
+        $id = Yii::$app->queue->push(new \backend\parsing\Parsing([
+          'id' => $id,
+        ]));
+		
+		$url->status_id = $id;
+		
+	    if ($url->save()) {
 		    Yii::$app->getSession()->setFlash('success', 'Title получен');
             return $this->redirect(['url/index']);
 		}
