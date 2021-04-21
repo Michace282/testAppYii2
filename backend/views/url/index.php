@@ -18,10 +18,10 @@ foreach($urls as $url): ?>
 			<?php
 			if (!empty($url->status_id)) {
 			if (Yii::$app->queue->isReserved($url->status_id)) 
-				echo 'Парсинг в процессе';
+				echo 'Парсинг в очереде';
 			
 			if (Yii::$app->queue->isWaiting($url->status_id)) 
-				echo 'Парсинг завершен';
+				echo 'Парсинг в процессе';
 			
 			if (Yii::$app->queue->isDone($url->status_id)) 
 				echo 'Парсинг завершен';
